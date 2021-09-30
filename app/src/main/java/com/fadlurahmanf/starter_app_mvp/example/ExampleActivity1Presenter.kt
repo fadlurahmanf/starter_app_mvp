@@ -8,13 +8,12 @@ import javax.inject.Inject
 
 class ExampleActivity1Presenter @Inject constructor(
     val postEntity:PostEntity
-)
-    : BasePresenter<ExampleActivity1Contract.View>(), ExampleActivity1Contract.Presenter {
+) : BasePresenter<ExampleActivity1Contract.View>(), ExampleActivity1Contract.Presenter {
 
     override fun setExampleViewSuccess() {
         addSubscription(postEntity.getPost().uiSubscribe(
             {
-                println("MASUK ON NEXT")
+                println("MASUK ${it.body}")
             },
             {
                 println("MASUK ON ERROR")

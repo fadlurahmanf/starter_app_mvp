@@ -7,5 +7,5 @@ import retrofit2.http.GET
 
 interface PostApi {
     @GET("posts/2")
-    fun getPost() : Observable<Response<ResponseBody>>
+    fun getPost() : Observable<PostResponse>
 }
