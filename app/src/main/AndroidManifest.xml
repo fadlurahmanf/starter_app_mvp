@@ -3,6 +3,7 @@
     package="com.fadlurahmanf.starter_app_mvp">
 
     <application
+        android:name="com.fadlurahmanf.starter_app_mvp.BaseApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
