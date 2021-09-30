@@ -10,5 +10,5 @@ fun <T: Any> Observable<T>.uiSubscribe(onNext: (T) -> Unit = {},
                                        onComplete: () -> Unit = {}) : Disposable {
     return this.observeOn(AndroidSchedulers.mainThread())
         .subscribeOn(Schedulers.io())
-        .subscribe()
+        .subscribe(onNext, onError, onComplete)
 }
