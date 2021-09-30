@@ -1,14 +1,11 @@
 package com.fadlurahmanf.starter_app_mvp.example
 
 import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import com.fadlurahmanf.starter_app_mvp.R
-import com.fadlurahmanf.starter_app_mvp.base.BaseActivity
 import com.fadlurahmanf.starter_app_mvp.base.BaseMvpActivity
 import com.fadlurahmanf.starter_app_mvp.databinding.ActivityExample1Binding
 import dagger.android.AndroidInjection
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 // TODO: 30/09/2021 EXAMPLE ACTIVITY FOR BASE ACTIVITY
@@ -34,6 +31,13 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter>(), ExampleAc
     }
 
     override fun setup() {
+        binding.button1.setOnClickListener {
+            presenter.setExampleViewSuccess()
+        }
+
+        binding.button2.setOnClickListener {
+            presenter.setExampleViewError()
+        }
     }
 
 
@@ -42,10 +46,10 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter>(), ExampleAc
     }
 
     override fun exampleViewSuccess() {
-//        TODO("Not yet implemented")
+        toast("EXAMPLE VIEW SUCCESS")
     }
 
     override fun exampleViewError() {
-//        TODO("Not yet implemented")
+        toast("EXAMPLE VIEW ERROR")
     }
 }

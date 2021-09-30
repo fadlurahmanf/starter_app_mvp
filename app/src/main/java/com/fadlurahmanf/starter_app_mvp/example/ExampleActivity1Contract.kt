@@ -8,6 +8,7 @@ interface ExampleActivity1Contract {
         fun exampleViewError()
     }
     interface Presenter{
-        fun examplePresenter1()
+        fun setExampleViewSuccess()
+        fun setExampleViewError()
     }
 }

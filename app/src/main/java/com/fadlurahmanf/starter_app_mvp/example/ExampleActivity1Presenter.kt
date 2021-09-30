@@ -6,8 +6,12 @@ import javax.inject.Inject
 class ExampleActivity1Presenter @Inject constructor()
     : BasePresenter<ExampleActivity1Contract.View>(), ExampleActivity1Contract.Presenter {
 
-    override fun examplePresenter1() {
-        TODO("Not yet implemented")
+    override fun setExampleViewSuccess() {
+        view?.exampleViewSuccess()
+    }
+
+    override fun setExampleViewError() {
+        view?.exampleViewError()
     }
 
 }
