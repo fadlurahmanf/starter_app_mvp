@@ -2,6 +2,7 @@ package com.fadlurahmanf.starter_app_mvp.di
 
 import android.app.Application
 import com.fadlurahmanf.starter_app_mvp.BaseApp
+import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
@@ -12,6 +13,7 @@ interface ApplicationComponent {
 
     @Component.Builder
     interface Builder{
+        @BindsInstance
         fun application(application: Application):Builder
         fun build():ApplicationComponent
     }
