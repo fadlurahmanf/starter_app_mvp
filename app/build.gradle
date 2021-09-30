@@ -15,6 +15,9 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField "String", "BASE_DEV_URL", "\"https://jsonplaceholder.typicode.com/\""
+        buildConfigField "String", "BASE_PROD_URL", "\"https://jsonplaceholder.typicode.com/\""
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures{
@@ -27,6 +30,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+//    flavorDimensions('tier')
+//    productFlavors {
+//        develop {
+//            buildConfigField("String", "BASE_DEV_URL", "\"88888888 develop\"")
+//            dimension 'tier'
+//        }
+//    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
