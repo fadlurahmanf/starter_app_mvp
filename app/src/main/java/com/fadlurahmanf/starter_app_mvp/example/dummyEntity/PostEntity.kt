@@ -9,4 +9,5 @@ class PostEntity @Inject constructor() : AbstractNetwork<PostApi>(){
     }
 
     fun getPost() = networkService(30).getPost()
+    fun getAllPost() = networkService(30).getAllPost()
 }

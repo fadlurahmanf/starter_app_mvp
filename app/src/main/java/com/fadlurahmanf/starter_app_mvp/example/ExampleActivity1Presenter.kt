@@ -11,9 +11,9 @@ class ExampleActivity1Presenter @Inject constructor(
 ) : BasePresenter<ExampleActivity1Contract.View>(), ExampleActivity1Contract.Presenter {
 
     override fun setExampleViewSuccess() {
-        addSubscription(postEntity.getPost().uiSubscribe(
+        addSubscription(postEntity.getAllPost().uiSubscribe(
             {
-                println("MASUK ${it.body}")
+                println("MASUK ${it.size}")
             },
             {
                 println("MASUK ON ERROR")
