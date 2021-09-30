@@ -3,7 +3,6 @@ package com.fadlurahmanf.starter_app_mvp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-//todo delete dummy
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
