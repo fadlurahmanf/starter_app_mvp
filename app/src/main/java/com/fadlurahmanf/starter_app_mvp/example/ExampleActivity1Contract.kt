@@ -5,7 +5,7 @@ import com.fadlurahmanf.starter_app_mvp.base.ErrorView
 interface ExampleActivity1Contract {
     interface View:ErrorView{
         fun exampleViewSuccess()
-        fun exampleViewError()
+        fun exampleViewError(message:String?="")
     }
     interface Presenter{
         fun setExampleViewSuccess()
