@@ -9,6 +9,7 @@ abstract class BaseActivity:AppCompatActivity(), ErrorView {
         injectView()
         super.onCreate(savedInstanceState)
         setLayout()
+        internalSetup()
         setup()
     }
 
@@ -17,6 +18,8 @@ abstract class BaseActivity:AppCompatActivity(), ErrorView {
     abstract fun setLayout()
 
     abstract fun setup()
+
+    open fun internalSetup(){}
 
     override fun errorScreen(message: String?) {
         Toast.makeText(this, "ERROR SCREEN : $message", Toast.LENGTH_SHORT).show()
