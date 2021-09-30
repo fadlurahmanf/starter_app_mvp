@@ -1,7 +1,7 @@
 package com.fadlurahmanf.starter_app_mvp
 
 import android.app.Application
-import com.fadlurahmanf.starter_app_mvp.di.ApplicationComponent
+import com.fadlurahmanf.starter_app_mvp.di.component.ApplicationComponent
 import com.fadlurahmanf.starter_app_mvp.di.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector

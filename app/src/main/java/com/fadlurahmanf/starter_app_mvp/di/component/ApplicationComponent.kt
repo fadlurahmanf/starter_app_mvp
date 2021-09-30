@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starter_app_mvp.di
+package com.fadlurahmanf.starter_app_mvp.di.component
 
 import android.app.Application
 import com.fadlurahmanf.starter_app_mvp.BaseApp
@@ -15,7 +15,7 @@ interface ApplicationComponent {
     @Component.Builder
     interface Builder{
         @BindsInstance
-        fun application(application: Application):Builder
-        fun build():ApplicationComponent
+        fun application(application: Application): Builder
+        fun build(): ApplicationComponent
     }
 }
