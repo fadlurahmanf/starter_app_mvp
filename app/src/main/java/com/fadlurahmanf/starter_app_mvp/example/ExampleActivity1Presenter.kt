@@ -7,15 +7,17 @@ import com.fadlurahmanf.starter_app_mvp.extension.uiSubscribe
 import javax.inject.Inject
 
 class ExampleActivity1Presenter @Inject constructor(
-    var postEntity:PostEntity
+    private var postEntity:PostEntity
 ) : BasePresenter<ExampleActivity1Contract.View>(), ExampleActivity1Contract.Presenter {
 
     override fun getAllPost() {
-        println("saas")
         addSubscription(postEntity.getAllPost().uiSubscribe(
-            { view?.exampleViewSuccess(message = "SUKSES") },
+            {
+                view?.exampleViewSuccess()
+                println("tes")
+            },
             { view?.exampleViewError("ERROR") },
-            { view?.exampleViewSuccess(message = "COMPLETE")/*TODO: WHEN FUNCTION COMPLETED*/   }
+            { /*TODO: WHEN FUNCTION COMPLETED*/   }
         ))
     }
 

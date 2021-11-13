@@ -7,11 +7,11 @@ import io.reactivex.rxjava3.android.plugins.RxAndroidPlugins
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import io.reactivex.rxjava3.schedulers.Schedulers
-import io.reactivex.rxjava3.subscribers.TestSubscriber
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.api.extension.Extensions
+import org.mockito.BDDMockito.then
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
@@ -28,6 +28,9 @@ class ExampleActivity1PresenterTest {
 
     @Mock
     lateinit var postEntity: PostEntity
+
+    @Mock
+    lateinit var view:ExampleActivity1Contract.View
 
     lateinit var presenter: ExampleActivity1Presenter
 
@@ -48,5 +51,14 @@ class ExampleActivity1PresenterTest {
         Mockito.`when`(postEntity.getAllPost()).thenReturn(Observable.just(list))
 
         presenter.getAllPost()
+
+        Mockito.verify(postEntity, Mockito.times(1)).getAllPost()
+
+    }
+
+    @Test
+    fun getAllPostFailed(){
+        presenter.setExampleViewError()
+        Mockito.verify(view).exampleViewError(message = "ERROR")
     }
 }
