@@ -45,8 +45,8 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter>(), ExampleAc
         presenter.view = this
     }
 
-    override fun exampleViewSuccess() {
-        toast("EXAMPLE VIEW SUCCESS")
+    override fun exampleViewSuccess(message: String?) {
+        toast("EXAMPLE VIEW SUCCESS : $message")
     }
 
     override fun exampleViewError(message: String?) {

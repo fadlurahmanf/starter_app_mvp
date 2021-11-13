@@ -13,20 +13,19 @@ class ExampleActivity1Presenter @Inject constructor(
     override fun setExampleViewSuccess() {
         addSubscription(postEntity.getAllPost().uiSubscribe(
             {
-                println("MASUK ${it.size}")
+                view?.exampleViewSuccess(message = it.size.toString())
             },
             {
                 println("MASUK ON ERROR")
             },
             {
-                println("MASUK ON COMPLETE")
+                // TODO: COMPLETE FUNCTION
             }
         ))
-        view?.exampleViewSuccess()
     }
 
     override fun setExampleViewError() {
-        view?.exampleViewError(message = BuildConfig.BASE_DEV_URL)
+        view?.exampleViewError(message = "ERROR")
     }
 
 }
