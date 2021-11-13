@@ -8,7 +8,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 fun <T: Any> Observable<T>.uiSubscribe(onNext: (T) -> Unit = {},
                                        onError:(Throwable) -> Unit = {},
                                        onComplete: () -> Unit = {}) : Disposable {
-    return this.observeOn(AndroidSchedulers.mainThread())
-        .subscribeOn(Schedulers.io())
+    return this.subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
         .subscribe(onNext, onError, onComplete)
 }

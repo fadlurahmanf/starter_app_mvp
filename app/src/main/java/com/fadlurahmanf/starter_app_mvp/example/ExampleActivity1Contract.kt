@@ -8,7 +8,7 @@ interface ExampleActivity1Contract {
         fun exampleViewError(message:String?="")
     }
     interface Presenter{
-        fun setExampleViewSuccess()
+        fun getAllPost()
         fun setExampleViewError()
     }
 }

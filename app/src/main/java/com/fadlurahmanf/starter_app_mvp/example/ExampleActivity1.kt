@@ -32,7 +32,7 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter>(), ExampleAc
 
     override fun setup() {
         binding.button1.setOnClickListener {
-            presenter.setExampleViewSuccess()
+            presenter.getAllPost()
         }
 
         binding.button2.setOnClickListener {
