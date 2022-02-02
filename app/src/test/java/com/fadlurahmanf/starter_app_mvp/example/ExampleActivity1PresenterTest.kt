@@ -1,8 +1,10 @@
 package com.fadlurahmanf.starter_app_mvp.example
 
 
-import com.fadlurahmanf.starter_app_mvp.example.dummyEntity.PostEntity
-import com.fadlurahmanf.starter_app_mvp.example.dummyEntity.PostResponse
+import com.fadlurahmanf.starter_app_mvp.data.entity.example.PostEntity
+import com.fadlurahmanf.starter_app_mvp.data.response.example.PostResponse
+import com.fadlurahmanf.starter_app_mvp.ui.example.ExampleActivity1Contract
+import com.fadlurahmanf.starter_app_mvp.ui.example.ExampleActivity1Presenter
 import io.reactivex.rxjava3.android.plugins.RxAndroidPlugins
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.plugins.RxJavaPlugins
@@ -11,7 +13,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.api.extension.Extensions
-import org.mockito.BDDMockito.then
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
@@ -30,9 +31,9 @@ class ExampleActivity1PresenterTest {
     lateinit var postEntity: PostEntity
 
     @Mock
-    lateinit var view:ExampleActivity1Contract.View
+    lateinit var view: ExampleActivity1Contract.View
 
-    lateinit var presenter: ExampleActivity1Presenter
+    private lateinit var presenter: ExampleActivity1Presenter
 
     @BeforeEach
     fun beforeEach(){
@@ -51,14 +52,14 @@ class ExampleActivity1PresenterTest {
         Mockito.`when`(postEntity.getAllPost()).thenReturn(Observable.just(list))
 
         presenter.getAllPost()
-
         Mockito.verify(postEntity, Mockito.times(1)).getAllPost()
 
     }
 
     @Test
     fun getAllPostFailed(){
+        presenter.view = view
         presenter.setExampleViewError()
-        Mockito.verify(view).exampleViewError(message = "ERROR")
+        Mockito.verify(view, Mockito.times(1)).exampleViewError(message = "ERROR")
     }
 }

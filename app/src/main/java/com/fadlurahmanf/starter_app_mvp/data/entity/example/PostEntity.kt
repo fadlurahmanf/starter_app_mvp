@@ -1,9 +1,13 @@
-package com.fadlurahmanf.starter_app_mvp.example.dummyEntity
+package com.fadlurahmanf.starter_app_mvp.data.entity.example
 
+import android.content.Context
 import com.fadlurahmanf.starter_app_mvp.base.network.AbstractNetwork
+import com.fadlurahmanf.starter_app_mvp.data.api.example.PostApi
 import javax.inject.Inject
 
-class PostEntity @Inject constructor() : AbstractNetwork<PostApi>(){
+class PostEntity @Inject constructor(
+    var context: Context
+) : AbstractNetwork<PostApi>(context){
     override fun getApi(): Class<PostApi> {
         return PostApi::class.java
     }

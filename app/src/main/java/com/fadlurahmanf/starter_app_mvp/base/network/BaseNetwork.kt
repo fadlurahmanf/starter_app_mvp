@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starter_app_mvp.di.module
+package com.fadlurahmanf.starter_app_mvp.base.network
 
 import androidx.annotation.Nullable
 import com.fadlurahmanf.starter_app_mvp.BuildConfig
@@ -19,7 +19,7 @@ abstract class BaseNetwork<T>() {
         return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
-    fun okHttpClientBuilder(builder:OkHttpClient.Builder): OkHttpClient.Builder{
+    open fun okHttpClientBuilder(builder:OkHttpClient.Builder): OkHttpClient.Builder{
         return builder.addInterceptor(loggingInterceptor())
     }
 

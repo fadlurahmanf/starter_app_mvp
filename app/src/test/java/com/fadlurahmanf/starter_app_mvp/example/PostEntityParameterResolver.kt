@@ -1,6 +1,6 @@
 package com.fadlurahmanf.starter_app_mvp.example
 
-//import com.fadlurahmanf.starter_app_mvp.example.dummyEntity.PostEntity
+//import com.fadlurahmanf.starter_app_mvp.data.entity.example.PostEntity
 //import org.junit.jupiter.api.extension.ExtensionContext
 //import org.junit.jupiter.api.extension.ParameterContext
 //import org.junit.jupiter.api.extension.ParameterResolver

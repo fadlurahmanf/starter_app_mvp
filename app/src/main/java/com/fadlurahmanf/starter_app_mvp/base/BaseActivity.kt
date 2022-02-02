@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 abstract class BaseActivity:AppCompatActivity(), ErrorView {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         injectView()
         super.onCreate(savedInstanceState)

@@ -10,7 +10,7 @@ import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AndroidInjectionModule::class, ApplicationModule::class, ActivityBuilder::class]) // TODO: 30/09/2021 INPUT YOUR MODULES HERE
+@Component(modules = [AndroidInjectionModule::class, ApplicationModule::class, ActivityBuilder::class]) // TODO: ADD YOUR MODULES HERE //
 interface ApplicationComponent {
     fun inject(baseApp: BaseApp)
 

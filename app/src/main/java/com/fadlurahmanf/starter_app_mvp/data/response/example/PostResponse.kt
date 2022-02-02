@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starter_app_mvp.example.dummyEntity
+package com.fadlurahmanf.starter_app_mvp.data.response.example
 
 import com.google.gson.annotations.SerializedName
 

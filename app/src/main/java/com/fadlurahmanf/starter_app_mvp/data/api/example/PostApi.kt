@@ -1,8 +1,7 @@
-package com.fadlurahmanf.starter_app_mvp.example.dummyEntity
+package com.fadlurahmanf.starter_app_mvp.data.api.example
 
+import com.fadlurahmanf.starter_app_mvp.data.response.example.PostResponse
 import io.reactivex.rxjava3.core.Observable
-import okhttp3.ResponseBody
-import retrofit2.Response
 import retrofit2.http.GET
 
 interface PostApi {

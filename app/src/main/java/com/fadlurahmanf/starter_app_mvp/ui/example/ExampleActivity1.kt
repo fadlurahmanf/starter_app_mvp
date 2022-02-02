@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starter_app_mvp.example
+package com.fadlurahmanf.starter_app_mvp.ui.example
 
 import android.app.Activity
 import com.fadlurahmanf.starter_app_mvp.base.BaseMvpActivity
@@ -9,7 +9,8 @@ import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 // TODO: 30/09/2021 EXAMPLE ACTIVITY FOR BASE ACTIVITY
-class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter>(), ExampleActivity1Contract.View {
+class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter>(),
+    ExampleActivity1Contract.View {
     private lateinit var binding:ActivityExample1Binding
 
     companion object{

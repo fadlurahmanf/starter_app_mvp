@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starter_app_mvp.example
+package com.fadlurahmanf.starter_app_mvp.ui.example
 
 import com.fadlurahmanf.starter_app_mvp.base.ErrorView
 
