@@ -8,7 +8,7 @@ import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
-// TODO: 30/09/2021 EXAMPLE ACTIVITY FOR BASE ACTIVITY
+// TES NEW BRANCH MVP 2
 class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter>(),
     ExampleActivity1Contract.View {
     private lateinit var binding:ActivityExample1Binding
