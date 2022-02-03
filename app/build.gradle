@@ -61,12 +61,8 @@ dependencies {
     testImplementation "org.mockito:mockito-junit-jupiter:4.0.0"
     testImplementation "org.mockito:mockito-inline:2.8.47"
 
-    implementation "org.jetbrains.anko:anko-commons:$anko_version"
-
-    kapt 'com.google.dagger:dagger-compiler:2.39'
-    kapt 'com.google.dagger:dagger-android-processor:2.39'
-    implementation 'com.google.dagger:dagger:2.39'
-    implementation 'com.google.dagger:dagger-android-support:2.39'
+    implementation 'com.google.dagger:dagger:2.40.5'
+    kapt 'com.google.dagger:dagger-compiler:2.40.5'
 
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

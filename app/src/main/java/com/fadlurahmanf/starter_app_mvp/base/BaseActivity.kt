@@ -7,14 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 abstract class BaseActivity:AppCompatActivity(), ErrorView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        injectView()
+//        injectView()
         super.onCreate(savedInstanceState)
         setLayout()
         internalSetup()
         setup()
     }
 
-    abstract fun injectView()
+//    abstract fun injectView()
 
     abstract fun setLayout()
 

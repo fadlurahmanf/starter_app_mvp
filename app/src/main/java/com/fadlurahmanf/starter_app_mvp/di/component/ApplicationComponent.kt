@@ -1,23 +1,20 @@
 package com.fadlurahmanf.starter_app_mvp.di.component
 
-import android.app.Application
+import android.content.Context
 import com.fadlurahmanf.starter_app_mvp.BaseApp
-import com.fadlurahmanf.starter_app_mvp.di.builder.ActivityBuilder
-import com.fadlurahmanf.starter_app_mvp.di.module.ApplicationModule
+import com.fadlurahmanf.starter_app_mvp.di.module.SubComponentModule
 import dagger.BindsInstance
 import dagger.Component
-import dagger.android.AndroidInjectionModule
-import javax.inject.Singleton
 
-@Singleton
-@Component(modules = [AndroidInjectionModule::class, ApplicationModule::class, ActivityBuilder::class]) // TODO: ADD YOUR MODULES HERE //
+
+@Component(modules = [SubComponentModule::class])
 interface ApplicationComponent {
-    fun inject(baseApp: BaseApp)
+    fun inject(app:BaseApp)
 
-    @Component.Builder
-    interface Builder{
-        @BindsInstance
-        fun application(application: Application): Builder
-        fun build(): ApplicationComponent
+    fun activityComponent(): ActivityComponent.Factory
+
+    @Component.Factory
+    interface Factory{
+        fun create(@BindsInstance context: Context):ApplicationComponent
     }
 }
