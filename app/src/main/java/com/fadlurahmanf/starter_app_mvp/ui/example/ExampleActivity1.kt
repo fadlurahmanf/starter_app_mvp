@@ -3,14 +3,15 @@ package com.fadlurahmanf.starter_app_mvp.ui.example
 
 import com.fadlurahmanf.starter_app_mvp.BaseApp
 import com.fadlurahmanf.starter_app_mvp.base.BaseMvpActivity
+import com.fadlurahmanf.starter_app_mvp.data.repository.example.ExampleRepository
 import com.fadlurahmanf.starter_app_mvp.databinding.ActivityExample1Binding
-import com.fadlurahmanf.starter_app_mvp.di.component.ActivityComponent
+import com.fadlurahmanf.starter_app_mvp.di.component.ExampleComponent
 import javax.inject.Inject
 
 // TES NEW BRANCH MVP 2
 class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter>(), ExampleActivity1Contract.View {
     private lateinit var binding:ActivityExample1Binding
-    lateinit var activityComponent:ActivityComponent
+    lateinit var exampleComponent:ExampleComponent
 
     override fun setLayout() {
         binding = ActivityExample1Binding.inflate(layoutInflater)
@@ -22,13 +23,18 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter>(), ExampleAc
     }
 
     override fun injectView() {
-        activityComponent = (applicationContext as BaseApp).appComponent.activityComponent().create()
-        activityComponent.inject(this)
+        exampleComponent = (applicationContext as BaseApp).appComponent.exampleComponent().create()
+        exampleComponent.inject(this)
     }
+
+    @Inject
+    lateinit var exampleRepository: ExampleRepository
 
     override fun setup() {
         binding.button1.setOnClickListener {
-            presenter.setExampleViewError()
+            exampleRepository.list1?.forEach {
+                println("MASUK ${it.data}")
+            }
         }
     }
 
@@ -36,11 +42,11 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter>(), ExampleAc
     lateinit var presenter: ExampleActivity1Presenter
 
     override fun exampleViewSuccess() {
-        println("HALO")
+        //todo when example view success
     }
 
     override fun exampleViewError(message: String?) {
-        println("HALO ERROR")
+        //todo when example view error
     }
 
 
