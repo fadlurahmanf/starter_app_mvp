@@ -15,28 +15,15 @@ class ExampleActivity1Presenter @Inject constructor(
 ) : BasePresenter<ExampleActivity1Contract.View>(), ExampleActivity1Contract.Presenter {
 
     override fun getAllPost() {
-        addSubscription(
-            testimonialEntity.getTestimonial().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(
-                    {
-                        view?.exampleViewSuccess()
-                    },
-                    {
-                        view?.exampleViewError(it.message)
-                    },
-                    {}
-                )
-        )
-
-//        addSubscription(testimonialEntity.getTestimonial().uiSubscribe(
-//            {
-//                view?.exampleViewSuccess()
-//            },
-//            {
-//                view?.exampleViewError(it.message)
-//            },
-//            {  }
-//        ))
+        addSubscription(testimonialEntity.getTestimonial().uiSubscribe(
+            {
+                view?.exampleViewSuccess()
+            },
+            {
+                view?.exampleViewError(it.message)
+            },
+            {  }
+        ))
     }
 
 }

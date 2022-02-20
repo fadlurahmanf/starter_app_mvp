@@ -5,15 +5,16 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "com.fadlurahmanf.starter_app_mvp"
         minSdkVersion 16
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         buildConfigField "String", "BASE_DEV_URL", "\"${DEV_BASE_URL}\""
 
@@ -58,16 +59,22 @@ dependencies {
 
     //testing mockito
     testImplementation "org.mockito:mockito-junit-jupiter:4.0.0"
-    testImplementation "org.mockito:mockito-inline:2.8.47"
+    testImplementation "org.mockito:mockito-inline:4.0.0"
 
-    implementation 'com.google.dagger:dagger:2.40.5'
-    kapt 'com.google.dagger:dagger-compiler:2.40.5'
+    //dagger dependency injection
+    implementation 'com.google.dagger:dagger:2.41'
+    kapt 'com.google.dagger:dagger-compiler:2.41'
 
-    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+    //retrofit
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
 
+    //rx java
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'io.reactivex.rxjava3:rxjava:3.1.1'
+
+    //work manager
+    implementation "androidx.work:work-runtime-ktx:2.7.1"
 }

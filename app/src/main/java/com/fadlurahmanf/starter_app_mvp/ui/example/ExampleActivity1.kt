@@ -2,11 +2,15 @@ package com.fadlurahmanf.starter_app_mvp.ui.example
 
 
 import android.widget.Toast
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
 import com.fadlurahmanf.starter_app_mvp.BaseApp
 import com.fadlurahmanf.starter_app_mvp.base.BaseMvpActivity
+import com.fadlurahmanf.starter_app_mvp.core.services.ExampleWorkManager
 import com.fadlurahmanf.starter_app_mvp.data.repository.example.ExampleRepository
 import com.fadlurahmanf.starter_app_mvp.databinding.ActivityExample1Binding
 import com.fadlurahmanf.starter_app_mvp.di.component.ExampleComponent
+import java.util.*
 import javax.inject.Inject
 
 class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter, ActivityExample1Binding>(ActivityExample1Binding::inflate), ExampleActivity1Contract.View {
@@ -28,6 +32,17 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter, ActivityExam
         binding?.button1?.setOnClickListener {
             presenter.getAllPost()
         }
+        binding?.button2?.setOnClickListener {
+            var oneTimeWorkRequest = OneTimeWorkRequest.Builder(ExampleWorkManager::class.java).build()
+            WorkManager.getInstance(this).enqueue(oneTimeWorkRequest)
+            observeWork(oneTimeWorkRequest.id)
+        }
+    }
+
+    private fun observeWork(uuid: UUID){
+        WorkManager.getInstance(this).getWorkInfoByIdLiveData(uuid).observe(this, {
+            println("MASUK ${it}")
+        })
     }
 
     @Inject
