@@ -5,12 +5,13 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.fadlurahmanf.starter_app_mvp.core.response.BaseErrorResponse
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class ConnectivityInterceptor @Inject constructor(
     private var context: Context
 ):Interceptor {
@@ -27,7 +28,7 @@ class ConnectivityInterceptor @Inject constructor(
     @RequiresApi(Build.VERSION_CODES.M)
     override fun intercept(chain: Interceptor.Chain): Response {
         if (!isConnectedInternet()){
-            throw BaseErrorResponse(messageText = "No Network Available", codeText = 404)
+            throw IOException("No network available")
         }else{
             return chain.proceed(chain.request())
         }

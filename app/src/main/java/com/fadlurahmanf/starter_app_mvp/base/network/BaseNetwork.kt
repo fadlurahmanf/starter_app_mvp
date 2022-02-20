@@ -2,6 +2,7 @@ package com.fadlurahmanf.starter_app_mvp.base.network
 
 import androidx.annotation.Nullable
 import com.fadlurahmanf.starter_app_mvp.BuildConfig
+import com.fadlurahmanf.starter_app_mvp.data.interceptor.ExceptionInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -21,6 +22,7 @@ abstract class BaseNetwork<T>() {
 
     open fun okHttpClientBuilder(builder:OkHttpClient.Builder): OkHttpClient.Builder{
         return builder.addInterceptor(loggingInterceptor())
+            .addInterceptor(ExceptionInterceptor())
     }
 
     private fun provideClient(timeOut: Long):OkHttpClient{
