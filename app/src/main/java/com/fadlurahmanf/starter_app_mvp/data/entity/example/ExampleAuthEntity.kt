@@ -5,7 +5,7 @@ import com.fadlurahmanf.starter_app_mvp.base.network.AuthAbstractNetwork
 import com.fadlurahmanf.starter_app_mvp.data.api.example.TestimonialApi
 import javax.inject.Inject
 
-class PostAuthEntity @Inject constructor(
+class ExampleAuthEntity @Inject constructor(
     private var context: Context
 ):AuthAbstractNetwork<TestimonialApi>(context) {
     override fun getApi(): Class<TestimonialApi> {
