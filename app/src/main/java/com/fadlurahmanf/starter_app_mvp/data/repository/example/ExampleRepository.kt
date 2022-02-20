@@ -2,7 +2,7 @@ package com.fadlurahmanf.starter_app_mvp.data.repository.example
 
 import android.content.Context
 import com.fadlurahmanf.starter_app_mvp.base.BasePreference
-import com.fadlurahmanf.starter_app_mvp.data.response.example.ExampleResponse
+import com.fadlurahmanf.starter_app_mvp.data.response.example.TestimonialResponse
 import javax.inject.Inject
 
 
@@ -38,9 +38,9 @@ class ExampleRepository @Inject constructor(
         field = value
     }
 
-    var obj1:ExampleResponse ?= null
+    var obj1:TestimonialResponse ?= null
     get() {
-        field = getData(OBJ1, ExampleResponse::class.java)
+        field = getData(OBJ1, TestimonialResponse::class.java)
         return field
     }
     set(value) {
@@ -48,9 +48,9 @@ class ExampleRepository @Inject constructor(
         field = value
     }
 
-    var list1:List<ExampleResponse> ?= null
+    var list1:List<TestimonialResponse> ?= null
     get() {
-        field = getDataList(LIST1, ExampleResponse::class.java)
+        field = getDataList(LIST1, TestimonialResponse::class.java)
         return field
     }set(value) {
         saveData(LIST1, value)

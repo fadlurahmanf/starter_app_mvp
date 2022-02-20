@@ -9,7 +9,6 @@ import com.fadlurahmanf.starter_app_mvp.databinding.ActivityExample1Binding
 import com.fadlurahmanf.starter_app_mvp.di.component.ExampleComponent
 import javax.inject.Inject
 
-// TES NEW BRANCH MVP 2
 class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter, ActivityExample1Binding>(ActivityExample1Binding::inflate), ExampleActivity1Contract.View {
     lateinit var exampleComponent:ExampleComponent
 
@@ -39,9 +38,7 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter, ActivityExam
     }
 
     override fun exampleViewError(message: String?) {
-        Toast.makeText(this, "Example Success", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Example Error : $message", Toast.LENGTH_LONG).show()
     }
-
-
 
 }
