@@ -19,15 +19,10 @@ class ExampleActivity1Presenter @Inject constructor(
                 view?.exampleViewSuccess()
             },
             {
-                println("MASUK ${it.message} dan ${it.localizedMessage}")
                 view?.exampleViewError("ERROR")
             },
-            { /*TODO: WHEN FUNCTION COMPLETED*/   }
+            {  }
         ))
-    }
-
-    override fun setExampleViewError() {
-        view?.exampleViewError(message = "ERROR")
     }
 
 }

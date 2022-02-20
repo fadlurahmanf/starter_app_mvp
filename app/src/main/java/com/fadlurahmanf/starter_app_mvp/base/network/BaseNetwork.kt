@@ -15,7 +15,7 @@ abstract class BaseNetwork<T>() {
     @Nullable
     var service:T ?= null
 
-    fun loggingInterceptor(): HttpLoggingInterceptor {
+    private fun loggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
@@ -23,7 +23,7 @@ abstract class BaseNetwork<T>() {
         return builder.addInterceptor(loggingInterceptor())
     }
 
-    fun provideClient(timeOut: Long):OkHttpClient{
+    private fun provideClient(timeOut: Long):OkHttpClient{
         return okHttpClientBuilder(OkHttpClient.Builder())
             .connectTimeout(timeOut, TimeUnit.SECONDS)
             .readTimeout(timeOut, TimeUnit.SECONDS)
@@ -32,14 +32,13 @@ abstract class BaseNetwork<T>() {
     }
 
     private val BASE_DEV_URL = BuildConfig.BASE_DEV_URL
-    private val BASE_PROD_URL = BuildConfig.BASE_PROD_URL
 
 
-    fun providesRetrofitBuilder():Retrofit.Builder{
+    private fun providesRetrofitBuilder():Retrofit.Builder{
         return Retrofit.Builder()
     }
 
-    fun provideRetrofit(timeOut: Long):Retrofit{
+    private fun provideRetrofit(timeOut: Long):Retrofit{
         return providesRetrofitBuilder().baseUrl(BASE_DEV_URL)
             .client(provideClient(timeOut))
             .addConverterFactory(GsonConverterFactory.create())

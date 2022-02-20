@@ -15,8 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField "String", "BASE_DEV_URL", "\"https://jsonplaceholder.typicode.com/\""
-        buildConfigField "String", "BASE_PROD_URL", "\"https://jsonplaceholder.typicode.com/\""
+        buildConfigField "String", "BASE_DEV_URL", "\"${DEV_BASE_URL}\""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
