@@ -3,7 +3,7 @@ package com.fadlurahmanf.starter_app_mvp.base
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 
-open class BasePresenter<T: ErrorView> {
+open class BasePresenter<T: BaseView> {
     var view:T ?= null
 
     open fun detachView(){

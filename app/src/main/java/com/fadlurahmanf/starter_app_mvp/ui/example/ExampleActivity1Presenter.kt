@@ -8,8 +8,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
-
-//tes branch 3
 class ExampleActivity1Presenter @Inject constructor(
     private var postEntity: PostEntity
 ) : BasePresenter<ExampleActivity1Contract.View>(), ExampleActivity1Contract.Presenter {

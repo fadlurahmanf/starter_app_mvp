@@ -11,8 +11,7 @@ import com.fadlurahmanf.starter_app_mvp.di.module.MainComponent
 import com.fadlurahmanf.starter_app_mvp.ui.example.ExampleActivity1
 import javax.inject.Inject
 
-class MainActivity : BaseActivity() {
-    private lateinit var binding: ActivityMainBinding
+class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     lateinit var mainComponent: MainComponent
 
     override fun injectView() {
@@ -20,16 +19,11 @@ class MainActivity : BaseActivity() {
         mainComponent.inject(this)
     }
 
-    override fun setLayout() {
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-    }
-
     @Inject
     lateinit var exampleRepository: ExampleRepository
 
     override fun setup() {
-        binding.tvId.setOnClickListener {
+        binding?.tvId?.setOnClickListener {
             exampleRepository.list1 = null
             val intent = Intent(this, ExampleActivity1::class.java)
             startActivity(intent)

@@ -9,14 +9,8 @@ import com.fadlurahmanf.starter_app_mvp.di.component.ExampleComponent
 import javax.inject.Inject
 
 // TES NEW BRANCH MVP 2
-class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter>(), ExampleActivity1Contract.View {
-    private lateinit var binding:ActivityExample1Binding
+class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter, ActivityExample1Binding>(ActivityExample1Binding::inflate), ExampleActivity1Contract.View {
     lateinit var exampleComponent:ExampleComponent
-
-    override fun setLayout() {
-        binding = ActivityExample1Binding.inflate(layoutInflater)
-        setContentView(binding.root)
-    }
 
     override fun initPresenterView() {
         presenter.view = this
@@ -31,7 +25,7 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter>(), ExampleAc
     lateinit var exampleRepository: ExampleRepository
 
     override fun setup() {
-        binding.button1.setOnClickListener {
+        binding?.button1?.setOnClickListener {
             exampleRepository.list1?.forEach {
                 println("MASUK ${it.data}")
             }
