@@ -47,9 +47,8 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter, ActivityExam
         }
 
         binding?.button3?.setOnClickListener {
-            var intent1 = Intent(this, MainActivity::class.java)
-            var intent2 = Intent(this, ExampleActivity1::class.java)
-            var pendingIntent = PendingIntent.getActivities(this, 0, arrayOf(intent1, intent2), 0)
+            var intent = Intent(this, MainActivity::class.java)
+            var pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
             notificationUtils.showNotification(
                 NotificationData(
                     "CHANNEL_ID",
