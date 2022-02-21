@@ -1,12 +1,17 @@
 package com.fadlurahmanf.starter_app_mvp.ui.example
 
-
+import android.app.PendingIntent
+import android.content.Intent
 import android.widget.Toast
+import androidx.core.app.NotificationCompat
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import com.fadlurahmanf.starter_app_mvp.BaseApp
+import com.fadlurahmanf.starter_app_mvp.MainActivity
 import com.fadlurahmanf.starter_app_mvp.base.BaseMvpActivity
 import com.fadlurahmanf.starter_app_mvp.core.services.ExampleWorkManager
+import com.fadlurahmanf.starter_app_mvp.core.utils.NotificationUtils
+import com.fadlurahmanf.starter_app_mvp.data.model.core.NotificationData
 import com.fadlurahmanf.starter_app_mvp.data.repository.example.ExampleRepository
 import com.fadlurahmanf.starter_app_mvp.databinding.ActivityExample1Binding
 import com.fadlurahmanf.starter_app_mvp.di.component.ExampleComponent
@@ -26,6 +31,9 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter, ActivityExam
     }
 
     @Inject
+    lateinit var notificationUtils: NotificationUtils
+
+    @Inject
     lateinit var exampleRepository: ExampleRepository
 
     override fun setup() {
@@ -36,6 +44,22 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter, ActivityExam
             var oneTimeWorkRequest = OneTimeWorkRequest.Builder(ExampleWorkManager::class.java).build()
             WorkManager.getInstance(this).enqueue(oneTimeWorkRequest)
             observeWork(oneTimeWorkRequest.id)
+        }
+
+        binding?.button3?.setOnClickListener {
+            var intent1 = Intent(this, MainActivity::class.java)
+            var intent2 = Intent(this, ExampleActivity1::class.java)
+            var pendingIntent = PendingIntent.getActivities(this, 0, arrayOf(intent1, intent2), 0)
+            notificationUtils.showNotification(
+                NotificationData(
+                    "CHANNEL_ID",
+                    Random().nextInt(100),
+                    pendingIntent,
+                    content = "HALO CONTENT HALO CONTENT HALO CONTENT HALO CONTENT HALO CONTENT ",
+                    title = "HALO TITLE",
+                    priority = NotificationCompat.PRIORITY_MAX
+                )
+            )
         }
     }
 
