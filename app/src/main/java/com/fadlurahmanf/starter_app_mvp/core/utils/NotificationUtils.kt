@@ -38,7 +38,7 @@ class NotificationUtils @Inject constructor(var context: Context) {
 //            val channelId = data.channelId
 //            val channel = NotificationChannel(channelId,
 //                "Channel human readable title",
-//                NotificationManager.IMPORTANCE_HIGH
+//                NotificationManager.IMPORTANCE_HIGH,
 //            )
 //            notificationManager.createNotificationChannel(channel)
 //            notificationBuilder.setChannelId(channelId)

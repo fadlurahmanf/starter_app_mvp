@@ -1,22 +1,32 @@
 package com.fadlurahmanf.starter_app_mvp.ui.example
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Intent
+import android.os.Bundle
+import android.os.Handler
 import android.widget.Toast
+import androidx.annotation.Nullable
 import androidx.core.app.NotificationCompat
+import androidx.work.Constraints
+import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import com.fadlurahmanf.starter_app_mvp.BaseApp
 import com.fadlurahmanf.starter_app_mvp.MainActivity
 import com.fadlurahmanf.starter_app_mvp.base.BaseMvpActivity
+import com.fadlurahmanf.starter_app_mvp.core.services.ExampleRxWorker
 import com.fadlurahmanf.starter_app_mvp.core.services.ExampleWorkManager
 import com.fadlurahmanf.starter_app_mvp.core.utils.NotificationUtils
 import com.fadlurahmanf.starter_app_mvp.data.model.core.NotificationData
 import com.fadlurahmanf.starter_app_mvp.data.repository.example.ExampleRepository
+import com.fadlurahmanf.starter_app_mvp.data.response.example.BaseResponse
 import com.fadlurahmanf.starter_app_mvp.databinding.ActivityExample1Binding
 import com.fadlurahmanf.starter_app_mvp.di.component.ExampleComponent
+import com.google.gson.Gson
 import java.util.*
 import javax.inject.Inject
+
 
 class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter, ActivityExample1Binding>(ActivityExample1Binding::inflate), ExampleActivity1Contract.View {
     lateinit var exampleComponent:ExampleComponent
@@ -36,13 +46,22 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter, ActivityExam
     @Inject
     lateinit var exampleRepository: ExampleRepository
 
+    private lateinit var uuidObserve: UUID
     override fun setup() {
         binding?.button1?.setOnClickListener {
             presenter.getAllPost()
         }
         binding?.button2?.setOnClickListener {
-            var oneTimeWorkRequest = OneTimeWorkRequest.Builder(ExampleWorkManager::class.java).build()
+            var constraint = Constraints.Builder()
+                .setRequiredNetworkType(NetworkType.CONNECTED)
+                .build()
+
+            var oneTimeWorkRequest = OneTimeWorkRequest.Builder(ExampleWorkManager::class.java)
+                .setConstraints(constraint)
+                .build()
+
             WorkManager.getInstance(this).enqueue(oneTimeWorkRequest)
+            uuidObserve = oneTimeWorkRequest.id
             observeWork(oneTimeWorkRequest.id)
         }
 
@@ -60,11 +79,32 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter, ActivityExam
                 )
             )
         }
+
+        binding?.button4?.setOnClickListener {
+            var constraint = Constraints.Builder()
+                .setRequiredNetworkType(NetworkType.CONNECTED)
+                .build()
+
+            var oneTimeWorkRequest = OneTimeWorkRequest.Builder(ExampleRxWorker::class.java)
+                .setConstraints(constraint)
+                .build()
+
+            WorkManager.getInstance(this).enqueue(oneTimeWorkRequest)
+            uuidObserve = oneTimeWorkRequest.id
+            observeWork(uuidObserve)
+        }
+
+        binding?.button5?.setOnClickListener {
+            WorkManager.getInstance(this).cancelWorkById(uuidObserve)
+        }
     }
 
     private fun observeWork(uuid: UUID){
         WorkManager.getInstance(this).getWorkInfoByIdLiveData(uuid).observe(this, {
-            println("MASUK ${it}")
+            if (it.outputData.getString("MESSAGE") != null){
+                var response = Gson().fromJson(it.outputData.getString("MESSAGE"), BaseResponse::class.java)
+                println("MASUK ${response.message}")
+            }
         })
     }
 
@@ -78,5 +118,4 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter, ActivityExam
     override fun exampleViewError(message: String?) {
         Toast.makeText(this, "Example Error : $message", Toast.LENGTH_LONG).show()
     }
-
 }
