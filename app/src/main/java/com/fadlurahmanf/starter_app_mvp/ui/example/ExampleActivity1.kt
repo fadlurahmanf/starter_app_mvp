@@ -97,6 +97,11 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter, ActivityExam
         binding?.button5?.setOnClickListener {
             WorkManager.getInstance(this).cancelWorkById(uuidObserve)
         }
+
+        binding?.button6?.setOnClickListener {
+            val intent = Intent(this, FragmentActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun observeWork(uuid: UUID){

@@ -20,6 +20,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     lateinit var exampleRepository: ExampleRepository
 
     override fun setup() {
+        exampleRepository.text1 = "HALO HALO"
         binding?.button1?.setOnClickListener {
             val intent = Intent(this, ExampleActivity1::class.java)
             startActivity(intent)
