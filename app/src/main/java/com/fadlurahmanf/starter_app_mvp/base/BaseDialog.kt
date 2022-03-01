@@ -4,16 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.DialogFragment
 import androidx.viewbinding.ViewBinding
 
-typealias InflateFragment<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
+abstract class BaseDialog<VB:ViewBinding>(
+    var inflateFragment:InflateFragment<VB>
+):DialogFragment() {
 
-abstract class BaseFragment<VB:ViewBinding>(
-    private val inflateFragment:InflateFragment<VB>
-):Fragment() {
-
-    private var _binding:VB ?= null
+    private var _binding: VB ?= null
     val binding get() = _binding
 
     override fun onCreateView(
@@ -22,7 +20,7 @@ abstract class BaseFragment<VB:ViewBinding>(
         savedInstanceState: Bundle?
     ): View? {
         _binding = inflateFragment.invoke(inflater, container, false)
-        return _binding?.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,7 +29,7 @@ abstract class BaseFragment<VB:ViewBinding>(
         setup()
     }
 
-    abstract fun injectView()
-
     abstract fun setup()
+
+    abstract fun injectView()
 }

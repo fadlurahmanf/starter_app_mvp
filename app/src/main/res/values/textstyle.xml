@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Font">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="Font.Regular">
+        <item name="fontFamily">@font/open_sans_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Font.Bold">
+        <item name="fontFamily">@font/open_sans_bold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Font.Regular.14">
+        <item name="android:textSize">@dimen/text_14sp</item>
+    </style>
+
+    <style name="Font.Bold.14">
+        <item name="android:textSize">@dimen/text_14sp</item>
+    </style>
+
+    <style name="Font.Regular.16">
+        <item name="android:textSize">@dimen/text_16sp</item>
+    </style>
+
+    <style name="Font.Bold.16">
+        <item name="android:textSize">@dimen/text_16sp</item>
+    </style>
+
+    <style name="Font.Regular.18">
+        <item name="android:textSize">@dimen/text_18sp</item>
+    </style>
+
+    <style name="Font.Bold.18">
+        <item name="android:textSize">@dimen/text_18sp</item>
+    </style>
+
+</resources>

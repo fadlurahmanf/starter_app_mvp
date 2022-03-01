@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.fadlurahmanf.starter_app_mvp.core.services.ConnectivityReceiver
+import com.fadlurahmanf.starter_app_mvp.ui.core.ConfirmDialog
+import com.fadlurahmanf.starter_app_mvp.ui.core.OkDialog
 import com.google.android.material.snackbar.Snackbar
 
 typealias InflateLayoutActivity<T> = (LayoutInflater) -> T
@@ -65,7 +67,7 @@ abstract class BaseActivity<VB:ViewBinding>(
     open fun internalSetup(){}
 
     override fun errorScreen(message: String?) {
-        Toast.makeText(this, message?:"Connection Lost. Please try again later", Toast.LENGTH_SHORT).show()
+        showSnackBar(message)
     }
 
     override fun errorConnection() {}
@@ -83,8 +85,72 @@ abstract class BaseActivity<VB:ViewBinding>(
     override fun onNetworkConnectionChanged(isConnected: Boolean) {
         if (connectivityReceiver != null){
             if (!isConnected){
-                Snackbar.make(binding!!.root, "You are going offline", Snackbar.LENGTH_LONG).show()
+                showSnackBar("You are going offline", Snackbar.LENGTH_LONG)
             }
         }
+    }
+
+    private var okDialog:OkDialog ?= null
+    open fun showOkDialog(
+        title:String ?= null,
+        content:String ?= null,
+        isCancelable:Boolean = true,
+        okText:String ?= null,
+        okListener:() -> Unit ?= {dismissOkDialog()}
+    ){
+        if (okDialog == null){
+            okDialog = OkDialog()
+            val bundle = Bundle()
+            bundle.putString(OkDialog.TITLE, title)
+            bundle.putString(OkDialog.CONTENT, content)
+            bundle.putBoolean(OkDialog.IS_CANCELABLE, isCancelable)
+            bundle.putString(OkDialog.OK_TEXT, okText)
+            okDialog?.arguments = bundle
+            okDialog?.setOkListener {
+                okListener()
+            }
+            okDialog?.show(supportFragmentManager, OkDialog::class.java.simpleName)
+        }
+    }
+
+    open fun dismissOkDialog(){
+        if (okDialog != null){
+            okDialog?.dismiss()
+            okDialog = null
+        }
+    }
+
+    private var confirmDialog:ConfirmDialog ?= null
+    open fun showConfirmDialog(
+        title:String ?= null,
+        content:String ?= null,
+        isCancelable:Boolean = true,
+        cancelText:String ?= null,
+        confirmText:String ?= null,
+        cancelListener:() -> Unit ?= {dismissConfirmDialog()},
+        confirmListener:() -> Unit ?= {dismissConfirmDialog()}
+    ){
+        if (confirmDialog == null){
+            confirmDialog = ConfirmDialog()
+            val bundle = Bundle()
+            bundle.putString(ConfirmDialog.TITLE, title)
+            bundle.putString(ConfirmDialog.CONTENT, content)
+            bundle.putBoolean(ConfirmDialog.IS_CANCELABLE, isCancelable)
+            bundle.putString(ConfirmDialog.CANCEL_TEXT, cancelText)
+            bundle.putString(ConfirmDialog.CONFIRM_TEXT, confirmText)
+            confirmDialog?.arguments = bundle
+            confirmDialog?.show(supportFragmentManager, ConfirmDialog::class.java.simpleName)
+        }
+    }
+
+    open fun dismissConfirmDialog(){
+        if (confirmDialog != null){
+            confirmDialog?.dismiss()
+            confirmDialog = null
+        }
+    }
+
+    open fun showSnackBar(message: String?, typeLong:Int?=null){
+        Snackbar.make(binding!!.root, message?:"", typeLong?:Snackbar.LENGTH_LONG).show()
     }
 }

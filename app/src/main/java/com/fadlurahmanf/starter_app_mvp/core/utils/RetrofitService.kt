@@ -18,13 +18,12 @@ import java.util.concurrent.TimeUnit
 object RetrofitService {
 
     fun services(context: Context): Retrofit {
-        var retrofit: Retrofit = Retrofit.Builder()
+        return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_DEV_URL)
             .client(provideClient(context))
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .build()
-        return retrofit
     }
 
     private fun provideClient(context: Context): OkHttpClient {

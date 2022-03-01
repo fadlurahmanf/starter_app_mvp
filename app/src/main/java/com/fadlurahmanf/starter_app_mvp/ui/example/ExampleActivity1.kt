@@ -102,6 +102,17 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter, ActivityExam
             val intent = Intent(this, FragmentActivity::class.java)
             startActivity(intent)
         }
+
+        binding?.button7?.setOnClickListener {
+            showOkDialog(
+                title = "EXAMPLE TITLE",
+                content = "Example Content",
+                isCancelable = false,
+                okListener = {
+                    dismissOkDialog()
+                }
+            )
+        }
     }
 
     private fun observeWork(uuid: UUID){

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="DialogAllRounded15" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/white_all_rounded_15</item>
+    </style>
+</resources>
