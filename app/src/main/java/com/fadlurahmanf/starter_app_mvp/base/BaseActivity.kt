@@ -2,10 +2,13 @@ package com.fadlurahmanf.starter_app_mvp.base
 
 import android.content.IntentFilter
 import android.net.ConnectivityManager
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.viewbinding.ViewBinding
 import com.fadlurahmanf.starter_app_mvp.core.services.ConnectivityReceiver
 import com.fadlurahmanf.starter_app_mvp.ui.core.ConfirmDialog
@@ -32,6 +35,16 @@ abstract class BaseActivity<VB:ViewBinding>(
     override fun onStart() {
         super.onStart()
         startConnectivityReceiver()
+    }
+
+    open fun setStatusBarStyle(color:Int, isLight:Boolean = true){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val window = this.window
+            val decorView = window.decorView
+            val wic = WindowInsetsControllerCompat(window, decorView)
+            wic.isAppearanceLightStatusBars = isLight
+            window.statusBarColor = ContextCompat.getColor(this, color)
+        }
     }
 
     override fun onResume() {
@@ -91,7 +104,7 @@ abstract class BaseActivity<VB:ViewBinding>(
     }
 
     private var okDialog:OkDialog ?= null
-    open fun showOkDialog(
+    fun showOkDialog(
         title:String ?= null,
         content:String ?= null,
         isCancelable:Boolean = true,
@@ -113,7 +126,7 @@ abstract class BaseActivity<VB:ViewBinding>(
         }
     }
 
-    open fun dismissOkDialog(){
+    fun dismissOkDialog(){
         if (okDialog != null){
             okDialog?.dismiss()
             okDialog = null
@@ -121,7 +134,7 @@ abstract class BaseActivity<VB:ViewBinding>(
     }
 
     private var confirmDialog:ConfirmDialog ?= null
-    open fun showConfirmDialog(
+    fun showConfirmDialog(
         title:String ?= null,
         content:String ?= null,
         isCancelable:Boolean = true,
@@ -139,11 +152,15 @@ abstract class BaseActivity<VB:ViewBinding>(
             bundle.putString(ConfirmDialog.CANCEL_TEXT, cancelText)
             bundle.putString(ConfirmDialog.CONFIRM_TEXT, confirmText)
             confirmDialog?.arguments = bundle
+            confirmDialog?.setListener(
+                cancel = { cancelListener() },
+                confirm = { confirmListener() }
+            )
             confirmDialog?.show(supportFragmentManager, ConfirmDialog::class.java.simpleName)
         }
     }
 
-    open fun dismissConfirmDialog(){
+    fun dismissConfirmDialog(){
         if (confirmDialog != null){
             confirmDialog?.dismiss()
             confirmDialog = null

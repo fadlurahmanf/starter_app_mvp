@@ -28,6 +28,10 @@ class ConfirmDialog: BaseDialog<DialogConfirmBinding>(DialogConfirmBinding::infl
         binding?.btnConfirm?.setOnClickListener {
             confirmListener()
         }
+
+        binding?.btnCancel?.setOnClickListener {
+            cancelListener()
+        }
     }
 
     private fun initData() {

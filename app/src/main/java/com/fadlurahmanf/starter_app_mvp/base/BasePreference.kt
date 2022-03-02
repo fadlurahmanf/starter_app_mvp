@@ -31,7 +31,7 @@ abstract class BasePreference(context: Context) {
 
     protected fun getInt(key: String):Int?{
         return try {
-            var raw = sharedPreferences?.getString(key, null)
+            val raw = sharedPreferences?.getString(key, null)
             when{
                 raw != null -> raw.toInt()
                 else -> null
@@ -49,7 +49,7 @@ abstract class BasePreference(context: Context) {
 
     protected fun getLong(key: String):Long?{
         return try {
-            var raw = sharedPreferences?.getString(key, null)
+            val raw = sharedPreferences?.getString(key, null)
             when{
                 raw != null -> raw.toLong()
                 else -> null
@@ -67,7 +67,7 @@ abstract class BasePreference(context: Context) {
 
     protected fun getFloat(key: String):Float?{
         return try {
-            var raw = sharedPreferences?.getString(key, null)
+            val raw = sharedPreferences?.getString(key, null)
             when{
                 raw != null -> raw.toFloat()
                 else -> null
@@ -85,7 +85,7 @@ abstract class BasePreference(context: Context) {
 
     protected fun getDouble(key: String):Double?{
         return try {
-            var raw = sharedPreferences?.getString(key, null)
+            val raw = sharedPreferences?.getString(key, null)
             when{
                 raw != null -> raw.toDouble()
                 else -> null
@@ -103,7 +103,7 @@ abstract class BasePreference(context: Context) {
 
     protected fun <T> getData(key: String, classOfT:Class<T>): T?{
         return try {
-            var rawString:String? = getString(key)
+            val rawString:String? = getString(key)
             if (rawString != null){
                 Gson().fromJson(rawString, classOfT)
             }else{
@@ -120,13 +120,13 @@ abstract class BasePreference(context: Context) {
 
     protected fun <T> getListData(key: String, classOfT:Class<T>): ArrayList<T>?{
         try {
-            var rawString:String? = getString(key)
-            var list:ArrayList<T> = arrayListOf<T>()
+            val rawString:String? = getString(key)
+            val list:ArrayList<T> = arrayListOf<T>()
             list.clear()
             if (rawString!=null){
-                var jsonArray = JSONArray(rawString)
+                val jsonArray = JSONArray(rawString)
                 for (i in 0 until jsonArray.length()){
-                    var row = jsonArray.getJSONObject(i)
+                    val row = jsonArray.getJSONObject(i)
                     list.add(Gson().fromJson(row.toString(), classOfT))
                 }
                 return list

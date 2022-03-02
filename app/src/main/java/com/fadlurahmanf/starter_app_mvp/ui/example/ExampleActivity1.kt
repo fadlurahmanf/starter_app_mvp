@@ -113,6 +113,20 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter, ActivityExam
                 }
             )
         }
+
+        binding?.button8?.setOnClickListener {
+            showConfirmDialog(
+                title = "EXAMPLE TITLE",
+                content = "EXAMPLE CONTENT",
+                isCancelable = false,
+                cancelListener = {
+                    dismissConfirmDialog()
+                },
+                confirmListener = {
+                    dismissConfirmDialog()
+                }
+            )
+        }
     }
 
     private fun observeWork(uuid: UUID){

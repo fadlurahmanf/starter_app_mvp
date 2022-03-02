@@ -26,22 +26,22 @@ class NotificationUtils @Inject constructor(var context: Context) {
             .setContentTitle(data.title)
             .setContentText(data.content)
             .setStyle(NotificationCompat.BigTextStyle()
-                .bigText("Much longer text that cannot fit one line..."))
+                .bigText(data.content))
             .setContentIntent(data.pendingIntent)
             .setPriority(data.priority)
+        
     }
 
     fun showNotification(data: NotificationData){
         buildNotification(data)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channelId = data.channelId
-            val channel = NotificationChannel(channelId,
-                "Channel human readable title",
+            val channel = NotificationChannel(data.channelId,
+                data.channelId,
                 NotificationManager.IMPORTANCE_HIGH,
             )
             notificationManager.createNotificationChannel(channel)
-            notificationBuilder.setChannelId(channelId)
+            notificationBuilder.setChannelId(data.channelId)
         }
         notificationManager.notify(0, notificationBuilder.build())
     }

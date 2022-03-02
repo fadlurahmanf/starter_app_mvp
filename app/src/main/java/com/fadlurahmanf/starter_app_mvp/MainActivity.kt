@@ -25,5 +25,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             val intent = Intent(this, ExampleActivity1::class.java)
             startActivity(intent)
         }
+        setStatusBarStyle(R.color.white)
     }
 }
