@@ -114,11 +114,11 @@ abstract class BasePreference(context: Context) {
         }
     }
 
-    protected fun <T> saveListData(key: String, value: ArrayList<T>){
+    protected fun <T> saveListData(key: String, value: List<T>){
         sharedPreferences?.edit()?.putString(key, Gson().toJson(value))?.apply()
     }
 
-    protected fun <T> getListData(key: String, classOfT:Class<T>): ArrayList<T>?{
+    protected fun <T> getListData(key: String, classOfT:Class<T>): List<T>?{
         try {
             val rawString:String? = getString(key)
             val list:ArrayList<T> = arrayListOf<T>()
