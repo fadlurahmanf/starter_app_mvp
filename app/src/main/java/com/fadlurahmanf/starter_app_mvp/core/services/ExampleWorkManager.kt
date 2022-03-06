@@ -1,19 +1,17 @@
 package com.fadlurahmanf.starter_app_mvp.core.services
 
 import android.content.Context
-import androidx.work.CoroutineWorker
-import androidx.work.WorkerParameters
+import androidx.work.*
 import androidx.work.rxjava3.RxWorker
-import androidx.work.workDataOf
+import com.fadlurahmanf.starter_app_mvp.core.utils.ChildWorkerFactory
 import com.fadlurahmanf.starter_app_mvp.core.utils.RetrofitService
 import com.fadlurahmanf.starter_app_mvp.core.utils.TestimonialApiService
+import com.fadlurahmanf.starter_app_mvp.data.repository.example.ExampleRepository
 import com.fadlurahmanf.starter_app_mvp.data.response.example.BaseResponse
-import com.fadlurahmanf.starter_app_mvp.data.response.example.TestimonialResponse
 import com.google.gson.Gson
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.*
-import retrofit2.await
+import javax.inject.Inject
 
 
 class ExampleWorkManager (
@@ -50,16 +48,25 @@ class ExampleRxWorker(
         }.onErrorReturn {
             Result.failure(workDataOf("MESSAGE" to Gson().toJson(BaseResponse(code = null, message = it.message, data = null))))
         })
-//        return services.getTestimonialObservable()
-//            .toList()
-//            .map {
-//                var result = it.first()
-//                if (result.code == 100){
-//                    Result.success(workDataOf("MESSAGE" to (Gson().toJson(result))))
-//                }else{
-//                    Result.failure(workDataOf("MESSAGE" to (result.message?:"")))
-//                }
-//            }
     }
 
+}
+
+class ExampleRxWorker2(
+    context: Context,
+    workerParams: WorkerParameters,
+    var repository: ExampleRepository
+):RxWorker(context, workerParams){
+    override fun createWork(): Single<Result> {
+        println("MASUK ${repository.text1}")
+        return Single.error(Throwable("e"))
+    }
+
+    class Factory @Inject constructor(
+        private val myRepository: ExampleRepository,
+    ): ChildWorkerFactory {
+        override fun create(appContext: Context, params: WorkerParameters): ExampleRxWorker2 {
+            return ExampleRxWorker2(appContext, params, myRepository)
+        }
+    }
 }

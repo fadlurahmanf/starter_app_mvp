@@ -16,6 +16,7 @@ import com.fadlurahmanf.starter_app_mvp.BaseApp
 import com.fadlurahmanf.starter_app_mvp.MainActivity
 import com.fadlurahmanf.starter_app_mvp.base.BaseMvpActivity
 import com.fadlurahmanf.starter_app_mvp.core.services.ExampleRxWorker
+import com.fadlurahmanf.starter_app_mvp.core.services.ExampleRxWorker2
 import com.fadlurahmanf.starter_app_mvp.core.services.ExampleWorkManager
 import com.fadlurahmanf.starter_app_mvp.core.utils.NotificationUtils
 import com.fadlurahmanf.starter_app_mvp.data.model.core.NotificationData
@@ -81,11 +82,25 @@ class ExampleActivity1 : BaseMvpActivity<ExampleActivity1Presenter, ActivityExam
         }
 
         binding?.button4?.setOnClickListener {
+            /**
             var constraint = Constraints.Builder()
                 .setRequiredNetworkType(NetworkType.CONNECTED)
                 .build()
 
             var oneTimeWorkRequest = OneTimeWorkRequest.Builder(ExampleRxWorker::class.java)
+                .setConstraints(constraint)
+                .build()
+
+            WorkManager.getInstance(this).enqueue(oneTimeWorkRequest)
+            uuidObserve = oneTimeWorkRequest.id
+            observeWork(uuidObserve)
+            */
+
+            var constraint = Constraints.Builder()
+                .setRequiredNetworkType(NetworkType.CONNECTED)
+                .build()
+
+            var oneTimeWorkRequest = OneTimeWorkRequest.Builder(ExampleRxWorker2::class.java)
                 .setConstraints(constraint)
                 .build()
 
