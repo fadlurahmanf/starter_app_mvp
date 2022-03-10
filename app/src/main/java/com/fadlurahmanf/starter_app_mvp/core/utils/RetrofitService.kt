@@ -8,6 +8,8 @@ import com.fadlurahmanf.starter_app_mvp.data.response.example.BaseResponse
 import com.fadlurahmanf.starter_app_mvp.data.response.example.TestimonialResponse
 import io.reactivex.rxjava3.core.Observable
 import okhttp3.OkHttpClient
+import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -15,7 +17,7 @@ import retrofit2.http.GET
 import java.util.concurrent.TimeUnit
 
 
-object RetrofitService {
+object WorkRetrofitServices {
 
     fun services(context: Context): Retrofit {
         return Retrofit.Builder()
@@ -37,9 +39,9 @@ object RetrofitService {
     }
 }
 
-interface TestimonialApiService{
+interface ExampleApiWorkService{
     @GET("api/testimonial/all")
-    suspend fun getTestimonial() : BaseResponse<List<TestimonialResponse>>
+    fun getTestimonialCoroutine() :  Call<BaseResponse<List<TestimonialResponse>>>
 
     @GET("api/testimonial/alL")
     fun getTestimonialObservable() : Observable<BaseResponse<List<TestimonialResponse>>>

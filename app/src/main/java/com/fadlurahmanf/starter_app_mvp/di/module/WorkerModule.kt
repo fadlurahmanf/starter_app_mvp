@@ -1,7 +1,9 @@
 package com.fadlurahmanf.starter_app_mvp.di.module
 
 import androidx.work.ListenableWorker
-import com.fadlurahmanf.starter_app_mvp.core.services.ExampleRxWorker2
+import com.fadlurahmanf.starter_app_mvp.core.services.work.example.ExampleCoroutineWorkManager
+import com.fadlurahmanf.starter_app_mvp.core.services.work.example.ExampleInjectWorker
+import com.fadlurahmanf.starter_app_mvp.core.services.work.example.ExampleRxWorker
 import com.fadlurahmanf.starter_app_mvp.core.utils.ChildWorkerFactory
 import dagger.Binds
 import dagger.MapKey
@@ -17,6 +19,16 @@ annotation class WorkerKey(val value: KClass<out ListenableWorker>)
 abstract class WorkerModule {
     @Binds
     @IntoMap
-    @WorkerKey(ExampleRxWorker2::class)
-    abstract fun bindExampleRxWorker(factory:ExampleRxWorker2.Factory) : ChildWorkerFactory
+    @WorkerKey(ExampleRxWorker::class)
+    abstract fun bindExampleRxWorker(factory:ExampleRxWorker.Factory) : ChildWorkerFactory
+
+    @Binds
+    @IntoMap
+    @WorkerKey(ExampleCoroutineWorkManager::class)
+    abstract fun bindExampleCoroutineWorker(factory:ExampleCoroutineWorkManager.Factory) : ChildWorkerFactory
+
+    @Binds
+    @IntoMap
+    @WorkerKey(ExampleInjectWorker::class)
+    abstract fun bindExampleInjectWorker(factory: ExampleInjectWorker.Factory) : ChildWorkerFactory
 }
