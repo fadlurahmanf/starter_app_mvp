@@ -79,4 +79,16 @@
         android:id="@+id/button8"
         android:text="SHOW CONFIRM DIALOG"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button9"
+        android:text="encrypt"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button10"
+        android:text="decrypt"/>
+
 </LinearLayout>

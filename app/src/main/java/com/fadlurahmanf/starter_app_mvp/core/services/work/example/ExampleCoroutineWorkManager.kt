@@ -16,6 +16,7 @@ class ExampleCoroutineWorkManager(
     workerParameters: WorkerParameters
 ):CoroutineWorker(context, workerParameters) {
     private var services: ExampleApiWorkService = WorkRetrofitServices.services(context).create(ExampleApiWorkService::class.java)
+
     override suspend fun doWork(): Result {
         try {
             var result = services.getTestimonialCoroutine().execute()

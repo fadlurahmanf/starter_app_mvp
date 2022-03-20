@@ -17,16 +17,16 @@ annotation class WorkerKey(val value: KClass<out ListenableWorker>)
 
 @Module
 abstract class WorkerModule {
-    @Binds
-    @IntoMap
-    @WorkerKey(ExampleRxWorker::class)
-    abstract fun bindExampleRxWorker(factory:ExampleRxWorker.Factory) : ChildWorkerFactory
-
-    @Binds
-    @IntoMap
-    @WorkerKey(ExampleCoroutineWorkManager::class)
-    abstract fun bindExampleCoroutineWorker(factory:ExampleCoroutineWorkManager.Factory) : ChildWorkerFactory
-
+//    @Binds
+//    @IntoMap
+//    @WorkerKey(ExampleRxWorker::class)
+//    abstract fun bindExampleRxWorker(factory:ExampleRxWorker.Factory) : ChildWorkerFactory
+//
+//    @Binds
+//    @IntoMap
+//    @WorkerKey(ExampleCoroutineWorkManager::class)
+//    abstract fun bindExampleCoroutineWorker(factory:ExampleCoroutineWorkManager.Factory) : ChildWorkerFactory
+//
     @Binds
     @IntoMap
     @WorkerKey(ExampleInjectWorker::class)

@@ -23,10 +23,4 @@ class BaseApp : Application() {
                 .build()
         )
     }
-
-//    override fun getWorkManagerConfiguration(): Configuration {
-//        return Configuration.Builder()
-//            .setWorkerFactory(workerFactory)
-//            .build()
-//    }
 }
